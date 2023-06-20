@@ -1,0 +1,79 @@
+<div class="flex h-[110vh] flex-col justify-center px-6 py-12 lg:px-8 bg-[#111827]">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <img class="mx-auto h-10 w-auto" src="https://www.freecodecamp.org/news/content/images/2022/06/crud.png" alt="Your Company">
+      <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">Sign Up for New Account</h2>
+    </div>
+  
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form class="space-y-6" action="#" method="post" #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)" autocomplete="off">
+        <div>
+          <label for="name" class="block text-sm font-medium leading-6 text-white">Name</label>
+          <div class="mt-2">
+            <input pattern="[a-z A-z]+$" id="name" name="name" type="text" autocomplete="off" ngModel required 
+            class="block w-full rounded-md border-0  p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            #name="ngModel" placeholder="Enter your name here"
+            [class.ring-red-600]="name.invalid && name.touched" [class.ring-gray-300]="name.valid"
+    >
+    <span *ngIf="name.invalid && name.touched" class="text-red-500">*Please enter a valid name</span>
+          </div>
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium leading-6 text-white">Email</label>
+          <div class="mt-2">
+            <input id="email" name="email" type="email" autocomplete="email" ngModel required 
+            #email="ngModel"
+            placeholder="Enter your email"
+            class="block w-full rounded-md border-0  p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            [class.ring-red-600]="email.invalid && email.touched" [class.ring-gray-300]="email.valid"
+            >
+            <span *ngIf="email.invalid && email.touched" class="text-red-500">*Please enter a valid name</span>
+          </div>
+        </div>
+  
+        <div>
+          <div class="flex items-center justify-between">
+            <label for="password" class="block text-sm font-medium leading-6 text-white">Password</label>
+            <!-- <div class="text-sm">
+              <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+            </div> -->
+          </div>
+          <div class="mt-2">
+            <input id="password" name="password" type="password" autocomplete="current-password" required 
+            class="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            #password="ngModel" ngModel
+            placeholder="Enter your password"
+            minlength="6" pattern="^(?=.*\d).+$"
+            [class.ring-red-600]="password.invalid && password.touched" [class.ring-gray-300]="password.valid"
+            >
+            <span *ngIf="password.invalid && password.touched" class="text-red-500">*Please enter a password of minimum length 6 and containing atleast one digit</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between">
+            <label for="confirmPassword" class="block text-sm font-medium leading-6 text-white">Confirm Password</label>
+          </div>
+          <div class="mt-2">
+            <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="current-password" required 
+            class="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            #confirmPassword="ngModel" ngModel
+            placeholder="Re-enter your password"
+            minlength="6" pattern="^(?=.*\d).+$"
+            [class.ring-red-600]="(confirmPassword.invalid && confirmPassword.touched && password !== confirmPassword)" [class.ring-gray-300]="confirmPassword.valid"
+            >
+            <span *ngIf="confirmPassword.touched && (password.value !== confirmPassword.value)" class="text-red-500">*Pasword does not match</span>
+          </div>
+        </div>
+  
+        <div>
+          <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign Up</button>
+          <span *ngIf="signupForm.invalid && (signupForm.touched || submitted)" class="text-red-500">*Please fill all the fields</span>
+        </div>
+      </form>
+  
+      <p class="mt-10 text-center text-sm text-[#93A3AF]">
+        Already a member?
+        <a href="" routerLink="/login" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Login In</a>
+      </p>
+    </div>
+  </div>

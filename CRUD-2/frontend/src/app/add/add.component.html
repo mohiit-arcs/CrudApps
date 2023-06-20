@@ -1,0 +1,100 @@
+<nav class="bg-[#4C1699] border-gray-200 ">
+    <div
+      class="container relative flex items-center justify-center p-6 mx-auto text-gray-600 capitalize dark:text-gray-300"
+    >
+      <a href="" class="flex absolute left-5 items-center">
+        <img
+          src="https://share.ftimg.com/aff/flamingtext/2019/03/28/flamingtext__26068056772646949.png"
+          class="h-10 mr-3 scale-110 transition-all"
+          alt="Crud App"
+        />
+      </a>
+      <div class="flex items-center">
+        <a
+          href=""
+          class="border-b-2 border-transparent text-xl font-bold text-[#FAFF39] hover:border-white mr-10 mx-2 hover:scale-110"
+          routerLink="/"
+          >Listing</a
+        >
+        <a
+          href=""
+          class="border-b-2 border-transparent font-bold text-xl text-[#FAFF39] hover:border-white mr-10 mx-2 hover:scale-110"
+          routerLink="/add"
+          >Add employee</a
+        >
+     </div>
+    </div>
+</nav>
+
+
+
+<div class="shadow-md drop-shadow rounded px-3 py-2 my-4 flex flex-col w-[600px] m-auto">
+    <form class="flex flex-col gap-4 p-2" method="post" #addForm="ngForm" (ngSubmit)="onSubmit(addForm)" autocomplete="off">
+      <label class="block uppercase tracking-wide text-grey-darker text-sm font-bold" for="name">Name: </label>
+      <input pattern="[a-z A-z]+$" #name="ngModel" class="capitalize appearance-none block w-full text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" type="text" name="name" id="name" ngModel required placeholder="Enter your name"
+      [class.border-red-600]="name.invalid && name.touched" [class.border-grey-lighter]="name.valid"
+      >
+      <span *ngIf="name.invalid && name.touched" class="text-red-500">*Please enter a valid name</span>
+      <fieldset class="mb-3">
+          <span class="block uppercase tracking-wide text-grey-darker text-sm font-bold mb-3">Gender: </span>
+          <input class="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black" type="radio" name="gender" id="male" value="Male" ngModel>
+          <label class="text-grey-darker mr-1" for="male"> Male </label>
+          <input class="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black" type="radio" name="gender" id="female" value="Female" ngModel>
+          <label class="text-grey-darker mr-1" for="female"> Female </label>
+          <input class="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black" type="radio" name="gender" id="others" value="Others" ngModel>
+          <label class="text-grey-darker mr-1" for="others"> Others </label>
+      </fieldset>
+      <label class="block uppercase tracking-wide text-grey-darker text-sm font-bold mt-1" for="email">Email: </label>
+      <input #email="ngModel" class="appearance-none block w-full text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" type="email" name="email" id="email" email placeholder="Enter you email" required ngModel
+      [class.border-red-600]="email.invalid && email.touched" [class.border-grey-lighter]="email.valid"
+      />
+      <span *ngIf="email.invalid && email.touched" class="text-red-500">*Please enter a valid email</span>
+      <!-- <br> -->
+      <label class="block uppercase tracking-wide text-grey-darker text-sm font-bold mt-1" for="mobile">Mobile: </label>
+      <input #mobile="ngModel" pattern="[0-9]{10}" class="appearance-none block w-full text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" type="tel" name="mobile" id="mobile" placeholder="Enter you number" required ngModel
+      [class.border-red-600]="mobile.invalid && mobile.touched" [class.border-grey-lighter]="mobile.valid"
+      />
+      <span *ngIf="mobile.invalid && mobile.touched" class="text-red-500">*Please enter a valid 10 digit mobile number</span>
+      <!-- <br> -->
+      <label class="block uppercase tracking-wide text-grey-darker text-sm font-bold mt-1" for="password">Password: </label>
+      <input #password="ngModel" class="appearance-none block w-full text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-1" type="password" name="password" id="password" placeholder="Enter your password" required ngModel
+      minlength="6" pattern="^(?=.*\d).+$"
+      [class.border-red-600]="password.invalid && password.touched" [class.border-grey-lighter]="password.valid"
+      />
+      <span *ngIf="password.invalid && password.touched" class="text-red-500">*Please enter a password of minimum length 6 and containing atleast one digit</span>
+      <!-- <br> -->
+      <label class="block uppercase tracking-wide text-grey-darker text-sm font-bold mt-1" for="type">Employment Type: </label>
+      <select class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded mb-3" name="employment_type" id="type" required ngModel>
+          <option class="text-grey-darker rounded" value="">--SELECT OPTION--</option>
+          <option class="text-grey-darker rounded" value="Full Time">Full Time</option>
+          <option class="text-grey-darker rounded" value="Intern">Intern</option>
+      </select>
+      <!-- <br> -->
+      <label class="block uppercase tracking-wide text-grey-darker text-sm font-bold mt-1" for="pincode">Pincode: </label>
+      <input #pincode="ngModel" length="6" class="appearance-none block w-full text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-1" type="number" name="pincode" id="pincode" placeholder="Enter your pincode here" required ngModel
+      [class.border-red-600]="pincode.invalid && pincode.touched" [class.border-grey-lighter]="pincode.valid"
+      pattern="^[1-9][0-9]{5}$"
+      />
+      <span *ngIf="pincode.invalid && pincode.touched" class="text-red-500">*Please enter valid pincode</span>
+      <!-- <br> -->
+      <label class="block uppercase tracking-wide text-grey-darker text-sm font-bold mt-1" for="state">State: </label>
+      <select class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded mb-3" name="state" id="state" required ngModel>
+          <option value="" disabled>--SELECT STATE--</option>
+          <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+        </select>
+      <!-- <br> -->
+      <label class="block uppercase tracking-wide text-grey-darker text-sm font-bold mt-1" for="address">Address: </label>
+      <input #address="ngModel" minlength="6" class="capitalize appearance-none block w-full text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-1" type="text" name="address" id="address" placeholder="Enter your address here" required ngModel
+      [class.border-red-600]="address.invalid && address.touched" [class.border-grey-lighter]="address.valid"
+      />
+      <span *ngIf="address.invalid && address.touched" class="text-red-500">*Please enter address of minimum length 6</span>
+      <!-- <br> -->
+      <div class="flex justify-end">
+          <button class="cursor-pointer text-white bg-blue-500 hover:bg-blue-600 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-3 text-center"
+          [disabled]="addForm.invalid && (addForm.touched || submitted)"
+          >Add</button>
+      </div>
+      <span *ngIf="addForm.invalid && (addForm.touched || submitted)" class="text-red-500">*Please fill all the fields</span>
+  
+    </form>
+  </div>

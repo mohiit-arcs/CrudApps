@@ -1,0 +1,143 @@
+<nav class="bg-white border-gray-200 dark:bg-gray-900">
+    <div
+      class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 py-3"
+    >
+      <a href="" class="flex items-center">
+        <img
+          src="https://www.freecodecamp.org/news/content/images/2022/06/crud.png"
+          class="h-10 mr-3 scale-110 transition-all"
+          alt="Crud App"
+        />
+      </a>
+      <div class="flex items-center">
+        <a
+          href=""
+          class="font-semibold text-indigo-500 hover:text-indigo-400 hover:scale-110 transition-all mr-4 text-xl"
+          routerLink="/display"
+          >Show Records</a
+        >
+        <a
+          href=""
+          class="font-semibold text-indigo-500 hover:text-indigo-400 ml-3 mr-5 no-underline hover:scale-110 transition-all text-xl"
+          routerLink="/add"
+          >Add New</a
+        >
+
+        <span class="font-semibold text-indigo-500 hover:text-indigo-400 hover:scale-110 transition-all mr-[-50px] cursor-pointer text-xl" (click)="logout()">Log Out   
+            <svg fill="#3949AB" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 384.971 384.971" xml:space="preserve" stroke="#3949AB"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> 
+            <g id="Sign_Out"> <path d="M180.455,360.91H24.061V24.061h156.394c6.641,0,12.03-5.39,12.03-12.03s-5.39-12.03-12.03-12.03H12.03 C5.39,0.001,0,5.39,0,12.031V372.94c0,6.641,5.39,12.03,12.03,12.03h168.424c6.641,0,12.03-5.39,12.03-12.03 C192.485,366.299,187.095,360.91,180.455,360.91z"></path>
+            <path d="M381.481,184.088l-83.009-84.2c-4.704-4.752-12.319-4.74-17.011,0c-4.704,4.74-4.704,12.439,0,17.179l62.558,63.46H96.279 c-6.641,0-12.03,5.438-12.03,12.151c0,6.713,5.39,12.151,12.03,12.151h247.74l-62.558,63.46c-4.704,4.752-4.704,12.439,0,17.179 c4.704,4.752,12.319,4.752,17.011,0l82.997-84.2C386.113,196.588,386.161,188.756,381.481,184.088z"></path>
+            </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> </g> </g></svg>
+        </span>
+     </div>
+    </div>
+</nav>
+
+  <!-- <br> -->
+
+<div class="relative my-3 m-auto w-[300px]">
+    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+    </div>
+    <input type="text" class="block p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search records..." autocomplete="off"
+        [(ngModel)]="searchTable"
+    >
+</div>
+<div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
+  <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
+    <thead class="bg-gray-200">
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">Sr. No</th>
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">Name
+        <button (click)="sortByName()">
+            <svg height="16" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"/></svg>
+        </button>
+      </th>
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">Gender
+        <button (click)="sortByGender()">
+            <svg height="16" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"/></svg>
+        </button>
+      </th>
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">Email
+        <button (click)="sortByEmail()">
+            <svg height="16" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"/></svg>
+        </button>
+      </th>
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">Mobile
+        <button (click)="sortByNumber()">
+            <svg height="16" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"/></svg>
+        </button>
+      </th>
+      <!-- <th>Password</th> -->
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">Employment Type
+        <button (click)="sortByType()">
+            <svg height="16" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"/></svg>
+        </button>
+      </th>
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">Pincode
+        <button (click)="sortByPincode()">
+            <svg height="16" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"/></svg>
+        </button>
+      </th>
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">State
+        <button (click)="sortByState()">
+            <svg height="16" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"/></svg>
+        </button>
+      </th>
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">Address
+        <button (click)="sortByAddress()">
+            <svg height="16" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"/></svg>
+        </button>
+      </th>
+      <!-- <th class="px-6 py-4 text-sm text-gray-900 font-bold">Created At</th>
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">Modified At</th> -->
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">Operations</th>
+    </thead>
+
+    <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+      <tr
+      *ngFor="let employee of POSTS | filter: searchTable | paginate:{
+        itemsPerPage: tableSize,
+        currentPage: page,
+        totalItems: count
+      }; let i = index"
+      class="hover:bg-gray-100 transition-all"
+      >
+        <td class="px-5 py-3">{{ (page - 1) * tableSize + i + 1 }}</td>
+        <td class="px-5 py-3 capitalize">{{ employee.name }}</td>
+        <td class="px-5 py-3">{{ employee.gender }}</td>
+        <td class="px-5 py-3">{{ employee.email }}</td>
+        <td class="px-5 py-3">{{ employee.mobile }}</td>
+        <!-- <td>{{ employee.password }}</td> -->
+        <td class="px-5 py-3">{{ employee.employment_type }}</td>
+        <td class="px-5 py-3">{{ employee.pincode }}</td>
+        <td class="px-5 py-3">{{ employee.state }}</td>
+        <td class="px-5 py-3">{{ employee.address }}</td>
+        <!-- <td class="px-5 py-3">{{ employee.createdAt}}</td>
+        <td class="px-5 py-3">{{ employee.updatedAt}}</td> -->
+        <td class="px-5 py-3">
+          <a href="" routerLink="/edit/{{ employee._id }}"
+            >
+            <svg class="feather feather-edit" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </a>
+          |
+          <button (click)="deleteEmployee(employee._id)">
+            <svg height="24" viewBox="0 0 48 48" width="28" xmlns="http://www.w3.org/2000/svg"><path d="M12 38c0 2.21 1.79 4 4 4h16c2.21 0 4-1.79 4-4V14H12v24zM38 8h-7l-2-2H19l-2 2h-7v4h28V8z"/><path d="M0 0h48v48H0z" fill="none"/></svg>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="flex gap-2 items-start justify-end mt-4 mr-5">
+    <div>
+        <label>Rows Per Page: </label>
+      <select class="border-2 mx-2" (change)="onTableSizeChange($event)">
+        <option value="" disabled>-size-</option>
+        <option *ngFor="let size of tableSizes">{{ size }}</option>
+      </select>
+    </div>
+    <div class="mr-7">
+        <pagination-controls (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+    </div>
+</div>

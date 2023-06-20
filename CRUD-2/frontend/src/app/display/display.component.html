@@ -1,0 +1,137 @@
+<nav class="bg-[#4C1699] border-gray-200 ">
+    <div
+      class="container relative flex items-center justify-center p-6 mx-auto text-gray-600 capitalize dark:text-gray-300"
+    >
+      <a href="" class="flex absolute left-5 items-center">
+        <img
+          src="https://share.ftimg.com/aff/flamingtext/2019/03/28/flamingtext__26068056772646949.png"
+          class="h-10 mr-3 scale-110 transition-all"
+          alt="Crud App"
+        />
+      </a>
+      <div class="flex items-center">
+        <a
+          href=""
+          class="border-b-2 border-transparent text-xl font-bold text-[#FAFF39] hover:border-white mr-10 mx-2 hover:scale-110"
+          routerLink="/"
+          >Listing</a
+        >
+        <a
+          href=""
+          class="border-b-2 border-transparent font-bold text-xl text-[#FAFF39] hover:border-white mr-10 mx-2 hover:scale-110"
+          routerLink="/add"
+          >Add employee</a
+        >
+     </div>
+    </div>
+</nav>
+
+  <!-- <br> -->
+
+<div class="relative my-3 m-auto w-[500px]">
+    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+    </div>
+    <input type="text" class="w-full block p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"  placeholder="Search records..." autocomplete="off"
+        [(ngModel)]="searchTable"
+    >
+</div>
+
+<div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
+  <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
+    <thead class="bg-gray-200">
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">Sr. No</th>
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">Name
+        <button (click)="sortByName()">
+            <svg height="16" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"/></svg>
+        </button>
+      </th>
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">Gender
+        <button (click)="sortByGender()">
+            <svg height="16" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"/></svg>
+        </button>
+      </th>
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">Email
+        <button (click)="sortByEmail()">
+            <svg height="16" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"/></svg>
+        </button>
+      </th>
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">Mobile
+        <button (click)="sortByNumber()">
+            <svg height="16" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"/></svg>
+        </button>
+      </th>
+      <!-- <th>Password</th> -->
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">Employment Type
+        <button (click)="sortByType()">
+            <svg height="16" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"/></svg>
+        </button>
+      </th>
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">Pincode
+        <button (click)="sortByPincode()">
+            <svg height="16" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"/></svg>
+        </button>
+      </th>
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">State
+        <button (click)="sortByState()">
+            <svg height="16" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"/></svg>
+        </button>
+      </th>
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">Address
+        <button (click)="sortByAddress()">
+            <svg height="16" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"/></svg>
+        </button>
+      </th>
+      <!-- <th class="px-6 py-4 text-sm text-gray-900 font-bold">Created At</th>
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">Modified At</th> -->
+      <th class="px-6 py-4 text-sm text-gray-900 font-bold">Operations</th>
+    </thead>
+
+    <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+      <tr
+      *ngFor="let employee of POSTS | filter: searchTable | paginate:{
+        itemsPerPage: tableSize,
+        currentPage: page,
+        totalItems: count
+      }; let i = index"
+      class="hover:bg-gray-100 transition-all"
+      >
+        <td class="px-5 py-3">{{ (page - 1) * tableSize + i + 1 }}</td>
+        <td class="px-5 py-3 capitalize">{{ employee.name }}</td>
+        <td class="px-5 py-3">{{ employee.gender }}</td>
+        <td class="px-5 py-3">{{ employee.email }}</td>
+        <td class="px-5 py-3">{{ employee.mobile }}</td>
+        <!-- <td>{{ employee.password }}</td> -->
+        <td class="px-5 py-3">{{ employee.employment_type }}</td>
+        <td class="px-5 py-3">{{ employee.pincode }}</td>
+        <td class="px-5 py-3">{{ employee.state }}</td>
+        <td class="px-5 py-3">{{ employee.address }}</td>
+        <!-- <td class="px-5 py-3">{{ employee.createdAt}}</td>
+        <td class="px-5 py-3">{{ employee.updatedAt}}</td> -->
+        <td class="px-5 py-3 flex">
+          <a href="" routerLink="/edit/{{ employee.id }}" class="hover:drop-shadow-md hover:scale-125"
+            >
+            <svg class="feather feather-edit" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </a>
+          |
+          <button (click)="deleteEmployee(employee)" class="hover:drop-shadow-md hover:scale-125">
+            <svg height="24" viewBox="0 0 48 48" width="28" xmlns="http://www.w3.org/2000/svg"><path d="M12 38c0 2.21 1.79 4 4 4h16c2.21 0 4-1.79 4-4V14H12v24zM38 8h-7l-2-2H19l-2 2h-7v4h28V8z"/><path d="M0 0h48v48H0z" fill="none"/></svg>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="flex gap-2 items-start justify-end mt-4 mr-5">
+    <div>
+        <label>Rows Per Page: </label>
+      <select class="border-2 mx-2" (change)="onTableSizeChange($event)">
+        <option value="" disabled>-size-</option>
+        <option *ngFor="let size of tableSizes">{{ size }}</option>
+      </select>
+    </div>
+    <div class="mr-7">
+        <pagination-controls (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+    </div>
+</div>
